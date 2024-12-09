@@ -1,0 +1,66 @@
+@model IEnumerable<WebGestionEcole.Models.DetailCours>
+
+@{
+}
+
+
+
+
+<div class="flex justify-center items-center w-full h-screen">
+    <div class="flex flex-col sm:rounded-lg items-end w-8/12 bg-gray-100 p-5 ml-52 shadow-lg mt-12"
+        style="height: 80vh; max-height: 80vh; border: 2px solid #e2e8f0; border-radius: 10px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+
+        <!-- Titre du tableau en haut du cadre -->
+        <div class="w-full bg-gray-200 rounded-lg p-4 shadow-md mb-5">
+            <h2 class="text-xl font-semibold text-gray-800 text-center">Liste Des cours</h2>
+        </div>
+
+
+        <!-- Conteneur pour la table avec max-height pour la limite de taille et overflow-y-auto pour le scroll -->
+        <div class="w-full overflow-y-auto max-h-96 bg-white rounded-lg shadow-lg">
+            <table class="p-10 w-full text-sm text-left rtl:text-right text-gray-700">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            @Html.DisplayNameFor(model => model.Cours.Date)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            @Html.DisplayNameFor(model => model.Cours.Heure)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            @Html.DisplayNameFor(model => model.Cours.Professeur)
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            @Html.DisplayNameFor(model => model.Cours.Module)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="odd:bg-gray-100 even:bg-gray-50 border-b border-gray-300 text-center">
+                            <td class="px-6 py-4">
+                                @Html.DisplayFor(modelItem => item.Cours.Date)
+                            </td>
+                            <td class="px-6 py-4">
+                                @Html.DisplayFor(modelItem => item.Cours.Heure)
+                            </td>
+                            <td class="px-6 py-4">
+                                @Html.DisplayFor(modelItem => item.Cours.Professeur.Nom)
+                            </td>
+                            <td class="px-6 py-4">
+                                @Html.DisplayFor(modelItem => item.Cours.Module)
+                            </td>
+                        </tr>
+
+                    }
+
+                    <tr>
+                        @if (Model.Count() == 0)
+                        {
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">Aucun client trouvé.</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
